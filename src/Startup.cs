@@ -1,45 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CoreCodeCamp.Data;
+﻿using CoreCodeCamp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace CoreCodeCamp
 {
-  public class Startup
-  {
-    public void ConfigureServices(IServiceCollection services)
+    public class Startup
     {
-      services.AddDbContext<CampContext>();
-      services.AddScoped<ICampRepository, CampRepository>();
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<CampContext>();
+            services.AddScoped<ICampRepository, CampRepository>();
 
-      services.AddControllers();
-    }
+            services.AddControllers();
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-      if (env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-      }
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        }
 
-      app.UseRouting();
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+            app.UseDeveloperExceptionPage();
+            }
 
-      app.UseAuthentication();
-      app.UseAuthorization();
+            app.UseRouting();
 
-      app.UseEndpoints(cfg =>
-      {
-        cfg.MapControllers();
-      });
-    }
-  }
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(cfg =>
+            {
+            cfg.MapControllers();
+            });
+        }
+    } 
 }

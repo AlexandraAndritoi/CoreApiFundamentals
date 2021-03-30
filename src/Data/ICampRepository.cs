@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CoreCodeCamp.Data
 {
-  public interface ICampRepository
+    public interface ICampRepository
   {
     // General 
     void Add<T>(T entity) where T : class;

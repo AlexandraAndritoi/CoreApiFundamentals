@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace CoreCodeCamp.Data
 {
-  public class CampContext : DbContext
+    public class CampContext : DbContext
   {
     private readonly IConfiguration _config;
 
