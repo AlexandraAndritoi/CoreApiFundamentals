@@ -7,7 +7,7 @@ namespace CoreCodeCamp.Data
     {
         public CampProfile()
         {
-            this.CreateMap<Camp, CampModel>()
+            CreateMap<Camp, CampModel>()
                 .ForMember(_ => _.VenueName, _ => _.MapFrom(_ => _.Location.VenueName))
                 .ForMember(_ => _.Address1, _ => _.MapFrom(_ => _.Location.Address1))
                 .ForMember(_ => _.Address2, _ => _.MapFrom(_ => _.Location.Address2))
@@ -17,8 +17,12 @@ namespace CoreCodeCamp.Data
                 .ForMember(_ => _.PostalCode, _ => _.MapFrom(_ => _.Location.PostalCode))
                 .ForMember(_ => _.Country, _ => _.MapFrom(_ => _.Location.Country))
                 .ReverseMap();
-            this.CreateMap <Talk, TalkModel>().ReverseMap();
-            this.CreateMap<Speaker, SpeakerModel>().ReverseMap();
+            CreateMap <Talk, TalkModel>()
+                .ReverseMap()
+                .ForMember(_ => _.Camp, _ => _.Ignore())
+                .ForMember(_ => _.Speaker, _ => _.Ignore());
+            CreateMap<Speaker, SpeakerModel>()
+                .ReverseMap();
         }
     }
 }
