@@ -12,7 +12,7 @@ namespace CoreCodeCamp.Controllers
 {
     [ApiController]
     [Route("api/camps/{moniker}/talks")]
-    public class TalksController : Controller
+    public class TalksController : ControllerBase
     {
         private readonly ICampRepository campRepository;
         private readonly IMapper mapper;
